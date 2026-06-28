@@ -1,0 +1,13 @@
+# Secrets — NEVER commit
+.secrets/
+*.key
+*.env
+.env
+
+# Large precomputed artifacts (shipped separately / via LFS at Phase 8)
+artifacts/*.npy
+
+# Python
+__pycache__/
+*.pyc
+.cache/

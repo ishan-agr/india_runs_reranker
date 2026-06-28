@@ -1,0 +1,18 @@
+# Rank-time (reproducing submission.csv on the released 100K needs only numpy + scikit-learn,
+# because embeddings and the reranker are shipped as precomputed artifacts).
+numpy==2.4.6
+scipy==1.17.1
+scikit-learn==1.9.0
+
+# Needed only to (a) regenerate embeddings via phase1_embed.py, or (b) rank a swapped/sample
+# set whose ids are not in the precomputed cache (e.g. the sandbox). CPU build:
+#   pip install torch==2.12.1 --index-url https://download.pytorch.org/whl/cpu
+torch==2.12.1
+sentence-transformers==5.6.0
+tqdm==4.68.3
+
+# Sandbox UI only (app.py); not used by rank.py:
+streamlit==1.40.0
+
+# Offline teacher labeling only (phase2_teacher.py); NOT needed to reproduce ranking:
+# anthropic==0.112.0
