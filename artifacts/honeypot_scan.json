@@ -1,0 +1,302 @@
+{
+  "total_flagged_union": 68,
+  "per_rule_counts": {
+    "yoe_gt_career_span": 25,
+    "sum_gt_career": 22,
+    "expert_zero_ge3": 21,
+    "position_gt_career": 20
+  },
+  "num_rules_fired_histogram": {
+    "1": 48,
+    "2": 20
+  },
+  "multi_rule_count": 20,
+  "examples_per_rule": {
+    "yoe_gt_career_span": [
+      {
+        "id": "CAND_0003430",
+        "title": "Business Analyst",
+        "yoe": 13.7,
+        "evidence": 149
+      },
+      {
+        "id": "CAND_0005291",
+        "title": "Business Analyst",
+        "yoe": 12.8,
+        "evidence": 121
+      },
+      {
+        "id": "CAND_0007413",
+        "title": "Business Analyst",
+        "yoe": 13.3,
+        "evidence": 117
+      },
+      {
+        "id": "CAND_0010770",
+        "title": "Recommendation Systems Engineer",
+        "yoe": 15.2,
+        "evidence": 96
+      }
+    ],
+    "expert_zero_ge3": [
+      {
+        "id": "CAND_0003582",
+        "title": "Mobile Developer",
+        "yoe": 8.2,
+        "evidence": 3
+      },
+      {
+        "id": "CAND_0016000",
+        "title": "Full Stack Developer",
+        "yoe": 2.0,
+        "evidence": 5
+      },
+      {
+        "id": "CAND_0033817",
+        "title": "HR Manager",
+        "yoe": 13.3,
+        "evidence": 4
+      },
+      {
+        "id": "CAND_0033972",
+        "title": "QA Engineer",
+        "yoe": 6.0,
+        "evidence": 3
+      }
+    ],
+    "position_gt_career": [
+      {
+        "id": "CAND_0007353",
+        "title": "Frontend Engineer",
+        "yoe": 9.9,
+        "evidence": 166
+      },
+      {
+        "id": "CAND_0008960",
+        "title": "Graphic Designer",
+        "yoe": 10.3,
+        "evidence": 171
+      },
+      {
+        "id": "CAND_0010294",
+        "title": ".NET Developer",
+        "yoe": 8.0,
+        "evidence": 144
+      },
+      {
+        "id": "CAND_0018515",
+        "title": "Marketing Manager",
+        "yoe": 8.5,
+        "evidence": 150
+      }
+    ],
+    "sum_gt_career": [
+      {
+        "id": "CAND_0007353",
+        "title": "Frontend Engineer",
+        "yoe": 9.9,
+        "evidence": 251
+      },
+      {
+        "id": "CAND_0008960",
+        "title": "Graphic Designer",
+        "yoe": 10.3,
+        "evidence": 271
+      },
+      {
+        "id": "CAND_0010294",
+        "title": ".NET Developer",
+        "yoe": 8.0,
+        "evidence": 220
+      },
+      {
+        "id": "CAND_0018515",
+        "title": "Marketing Manager",
+        "yoe": 8.5,
+        "evidence": 211
+      }
+    ]
+  },
+  "multi_rule_examples": [
+    {
+      "id": "CAND_0007353",
+      "title": "Frontend Engineer",
+      "yoe": 9.9,
+      "rules": {
+        "position_gt_career": 166,
+        "sum_gt_career": 251
+      }
+    },
+    {
+      "id": "CAND_0008960",
+      "title": "Graphic Designer",
+      "yoe": 10.3,
+      "rules": {
+        "position_gt_career": 171,
+        "sum_gt_career": 271
+      }
+    },
+    {
+      "id": "CAND_0010294",
+      "title": ".NET Developer",
+      "yoe": 8.0,
+      "rules": {
+        "position_gt_career": 144,
+        "sum_gt_career": 220
+      }
+    },
+    {
+      "id": "CAND_0018515",
+      "title": "Marketing Manager",
+      "yoe": 8.5,
+      "rules": {
+        "position_gt_career": 150,
+        "sum_gt_career": 211
+      }
+    },
+    {
+      "id": "CAND_0035104",
+      "title": "Software Engineer",
+      "yoe": 5.5,
+      "rules": {
+        "position_gt_career": 114,
+        "sum_gt_career": 162
+      }
+    },
+    {
+      "id": "CAND_0037000",
+      "title": "Search Engineer",
+      "yoe": 2.7,
+      "rules": {
+        "position_gt_career": 48,
+        "sum_gt_career": 75
+      }
+    },
+    {
+      "id": "CAND_0037539",
+      "title": "Project Manager",
+      "yoe": 4.9,
+      "rules": {
+        "position_gt_career": 106,
+        "sum_gt_career": 115
+      }
+    },
+    {
+      "id": "CAND_0040075",
+      "title": "Marketing Manager",
+      "yoe": 15.0,
+      "rules": {
+        "position_gt_career": 228,
+        "sum_gt_career": 365
+      }
+    },
+    {
+      "id": "CAND_0040853",
+      "title": "Operations Manager",
+      "yoe": 1.1,
+      "rules": {
+        "position_gt_career": 61,
+        "sum_gt_career": 61
+      }
+    },
+    {
+      "id": "CAND_0042453",
+      "title": "Marketing Manager",
+      "yoe": 4.2,
+      "rules": {
+        "position_gt_career": 98,
+        "sum_gt_career": 98
+      }
+    },
+    {
+      "id": "CAND_0043721",
+      "title": "Sales Executive",
+      "yoe": 4.5,
+      "rules": {
+        "position_gt_career": 102,
+        "sum_gt_career": 108
+      }
+    },
+    {
+      "id": "CAND_0053734",
+      "title": "Sales Executive",
+      "yoe": 8.6,
+      "rules": {
+        "position_gt_career": 151,
+        "sum_gt_career": 221
+      }
+    },
+    {
+      "id": "CAND_0055685",
+      "title": "Customer Support",
+      "yoe": 1.4,
+      "rules": {
+        "position_gt_career": 64,
+        "sum_gt_career": 64
+      }
+    },
+    {
+      "id": "CAND_0057711",
+      "title": "Java Developer",
+      "yoe": 7.7,
+      "rules": {
+        "position_gt_career": 140,
+        "sum_gt_career": 180
+      }
+    },
+    {
+      "id": "CAND_0064077",
+      "title": "Project Manager",
+      "yoe": 10.1,
+      "rules": {
+        "position_gt_career": 169,
+        "sum_gt_career": 237
+      }
+    },
+    {
+      "id": "CAND_0065710",
+      "title": "Marketing Manager",
+      "yoe": 4.4,
+      "rules": {
+        "position_gt_career": 100,
+        "sum_gt_career": 114
+      }
+    },
+    {
+      "id": "CAND_0070189",
+      "title": "Operations Manager",
+      "yoe": 6.9,
+      "rules": {
+        "position_gt_career": 130,
+        "sum_gt_career": 173
+      }
+    },
+    {
+      "id": "CAND_0077239",
+      "title": "Content Writer",
+      "yoe": 7.6,
+      "rules": {
+        "position_gt_career": 139,
+        "sum_gt_career": 180
+      }
+    },
+    {
+      "id": "CAND_0084182",
+      "title": "Civil Engineer",
+      "yoe": 12.7,
+      "rules": {
+        "position_gt_career": 200,
+        "sum_gt_career": 299
+      }
+    },
+    {
+      "id": "CAND_0093364",
+      "title": "Business Analyst",
+      "yoe": 7.9,
+      "rules": {
+        "position_gt_career": 142,
+        "sum_gt_career": 210
+      }
+    }
+  ]
+}
