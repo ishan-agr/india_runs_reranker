@@ -1,0 +1,552 @@
+{
+  "distinct_companies": 63,
+  "top_companies": [
+    [
+      "Infosys",
+      23722
+    ],
+    [
+      "Wipro",
+      23682
+    ],
+    [
+      "Pied Piper",
+      23614
+    ],
+    [
+      "Initech",
+      23590
+    ],
+    [
+      "Wayne Enterprises",
+      23556
+    ],
+    [
+      "Acme Corp",
+      23546
+    ],
+    [
+      "Stark Industries",
+      23524
+    ],
+    [
+      "Hooli",
+      23509
+    ],
+    [
+      "TCS",
+      23483
+    ],
+    [
+      "Globex Inc",
+      23471
+    ],
+    [
+      "Dunder Mifflin",
+      23416
+    ],
+    [
+      "Swiggy",
+      3019
+    ],
+    [
+      "Razorpay",
+      2926
+    ],
+    [
+      "CRED",
+      2908
+    ],
+    [
+      "Capgemini",
+      2895
+    ],
+    [
+      "HCL",
+      2894
+    ],
+    [
+      "Zomato",
+      2883
+    ],
+    [
+      "Flipkart",
+      2882
+    ],
+    [
+      "Mindtree",
+      2879
+    ],
+    [
+      "Accenture",
+      2871
+    ],
+    [
+      "Cognizant",
+      2863
+    ],
+    [
+      "Tech Mahindra",
+      2837
+    ],
+    [
+      "Mphasis",
+      2822
+    ],
+    [
+      "Meesho",
+      384
+    ],
+    [
+      "Nykaa",
+      378
+    ],
+    [
+      "InMobi",
+      376
+    ],
+    [
+      "BYJU'S",
+      355
+    ],
+    [
+      "PolicyBazaar",
+      355
+    ],
+    [
+      "Ola",
+      353
+    ],
+    [
+      "Zoho",
+      352
+    ],
+    [
+      "Vedantu",
+      350
+    ],
+    [
+      "Paytm",
+      343
+    ],
+    [
+      "Unacademy",
+      341
+    ],
+    [
+      "PharmEasy",
+      339
+    ],
+    [
+      "upGrad",
+      338
+    ],
+    [
+      "Freshworks",
+      338
+    ],
+    [
+      "PhonePe",
+      336
+    ],
+    [
+      "Dream11",
+      329
+    ],
+    [
+      "Genpact AI",
+      81
+    ],
+    [
+      "Glance",
+      79
+    ]
+  ],
+  "current_company": {
+    "total_with_company": 100000,
+    "matched_known_real": 39280,
+    "pct_known_real": 0.3928,
+    "matched_services_firm": 31155,
+    "pct_services": 0.3115
+  },
+  "top_industries": [
+    [
+      "IT Services",
+      29881
+    ],
+    [
+      "Software",
+      22417
+    ],
+    [
+      "Manufacturing",
+      22305
+    ],
+    [
+      "Conglomerate",
+      7571
+    ],
+    [
+      "Paper Products",
+      7467
+    ],
+    [
+      "Fintech",
+      2808
+    ],
+    [
+      "Food Delivery",
+      2514
+    ],
+    [
+      "E-commerce",
+      1529
+    ],
+    [
+      "Consulting",
+      1274
+    ],
+    [
+      "EdTech",
+      610
+    ],
+    [
+      "SaaS",
+      328
+    ],
+    [
+      "AI/ML",
+      278
+    ],
+    [
+      "AdTech",
+      172
+    ],
+    [
+      "Transportation",
+      162
+    ],
+    [
+      "Insurance Tech",
+      155
+    ],
+    [
+      "Gaming",
+      149
+    ],
+    [
+      "HealthTech",
+      147
+    ],
+    [
+      "HealthTech AI",
+      68
+    ],
+    [
+      "Conversational AI",
+      62
+    ],
+    [
+      "AI Services",
+      42
+    ]
+  ],
+  "industry_size_cross_top": [
+    [
+      [
+        "IT Services",
+        "10001+"
+      ],
+      29881
+    ],
+    [
+      [
+        "Conglomerate",
+        "10001+"
+      ],
+      7571
+    ],
+    [
+      [
+        "Software",
+        "51-200"
+      ],
+      7528
+    ],
+    [
+      [
+        "Software",
+        "11-50"
+      ],
+      7500
+    ],
+    [
+      [
+        "Manufacturing",
+        "501-1000"
+      ],
+      7492
+    ],
+    [
+      [
+        "Manufacturing",
+        "201-500"
+      ],
+      7490
+    ],
+    [
+      [
+        "Paper Products",
+        "201-500"
+      ],
+      7467
+    ],
+    [
+      [
+        "Software",
+        "1001-5000"
+      ],
+      7378
+    ],
+    [
+      [
+        "Manufacturing",
+        "1001-5000"
+      ],
+      7323
+    ],
+    [
+      [
+        "Food Delivery",
+        "5001-10000"
+      ],
+      2514
+    ],
+    [
+      [
+        "Fintech",
+        "1001-5000"
+      ],
+      2503
+    ],
+    [
+      [
+        "Consulting",
+        "10001+"
+      ],
+      1274
+    ],
+    [
+      [
+        "E-commerce",
+        "10001+"
+      ],
+      1171
+    ],
+    [
+      [
+        "E-commerce",
+        "1001-5000"
+      ],
+      358
+    ],
+    [
+      [
+        "EdTech",
+        "1001-5000"
+      ],
+      318
+    ],
+    [
+      [
+        "AdTech",
+        "1001-5000"
+      ],
+      172
+    ],
+    [
+      [
+        "SaaS",
+        "10001+"
+      ],
+      165
+    ],
+    [
+      [
+        "SaaS",
+        "5001-10000"
+      ],
+      163
+    ],
+    [
+      [
+        "Transportation",
+        "5001-10000"
+      ],
+      161
+    ],
+    [
+      [
+        "Fintech",
+        "10001+"
+      ],
+      161
+    ],
+    [
+      [
+        "EdTech",
+        "10001+"
+      ],
+      157
+    ],
+    [
+      [
+        "Insurance Tech",
+        "5001-10000"
+      ],
+      155
+    ],
+    [
+      [
+        "Gaming",
+        "1001-5000"
+      ],
+      149
+    ],
+    [
+      [
+        "HealthTech",
+        "5001-10000"
+      ],
+      147
+    ],
+    [
+      [
+        "Fintech",
+        "5001-10000"
+      ],
+      144
+    ]
+  ],
+  "descriptions": {
+    "total": 300171,
+    "scratch_only": 10037,
+    "library_only": 328,
+    "both": 0,
+    "neither": 289806,
+    "pct_scratch": 0.0334,
+    "pct_library": 0.0011
+  },
+  "scratch_examples": [
+    {
+      "id": "CAND_0000014",
+      "title": "Frontend Engineer",
+      "desc": "Frontend engineering at a media company. React, TypeScript, and the typical surrounding tooling (Webpack, Jest, Cypress). Built the company's design system from scratch and led the migration from a legacy AngularJS app. Strong on the fronte"
+    },
+    {
+      "id": "CAND_0000025",
+      "title": "Frontend Engineer",
+      "desc": "Frontend engineering at a media company. React, TypeScript, and the typical surrounding tooling (Webpack, Jest, Cypress). Built the company's design system from scratch and led the migration from a legacy AngularJS app. Strong on the fronte"
+    },
+    {
+      "id": "CAND_0000035",
+      "title": "Software Engineer",
+      "desc": "Frontend engineering at a media company. React, TypeScript, and the typical surrounding tooling (Webpack, Jest, Cypress). Built the company's design system from scratch and led the migration from a legacy AngularJS app. Strong on the fronte"
+    },
+    {
+      "id": "CAND_0000038",
+      "title": "Java Developer",
+      "desc": "Frontend engineering at a media company. React, TypeScript, and the typical surrounding tooling (Webpack, Jest, Cypress). Built the company's design system from scratch and led the migration from a legacy AngularJS app. Strong on the fronte"
+    },
+    {
+      "id": "CAND_0000038",
+      "title": "DevOps Engineer",
+      "desc": "Frontend engineering at a media company. React, TypeScript, and the typical surrounding tooling (Webpack, Jest, Cypress). Built the company's design system from scratch and led the migration from a legacy AngularJS app. Strong on the fronte"
+    },
+    {
+      "id": "CAND_0000044",
+      "title": "DevOps Engineer",
+      "desc": "Frontend engineering at a media company. React, TypeScript, and the typical surrounding tooling (Webpack, Jest, Cypress). Built the company's design system from scratch and led the migration from a legacy AngularJS app. Strong on the fronte"
+    }
+  ],
+  "tier1_top_institutions": [
+    [
+      "IIT Roorkee",
+      369
+    ],
+    [
+      "IIT Kharagpur",
+      368
+    ],
+    [
+      "IIT Delhi",
+      368
+    ],
+    [
+      "IIT Bombay",
+      366
+    ],
+    [
+      "Carnegie Mellon University",
+      363
+    ],
+    [
+      "Stanford University",
+      355
+    ],
+    [
+      "IIT Madras",
+      352
+    ],
+    [
+      "IIIT Hyderabad",
+      350
+    ],
+    [
+      "IISc Bangalore",
+      347
+    ],
+    [
+      "NIT Warangal",
+      341
+    ],
+    [
+      "BITS Pilani",
+      338
+    ],
+    [
+      "NIT Surathkal",
+      338
+    ],
+    [
+      "Massachusetts Institute of Technology",
+      335
+    ],
+    [
+      "Georgia Tech",
+      334
+    ],
+    [
+      "UC Berkeley",
+      331
+    ]
+  ],
+  "tier4_top_institutions": [
+    [
+      "Tier-3 Engineering College",
+      12995
+    ],
+    [
+      "Local Engineering College",
+      12967
+    ],
+    [
+      "Generic State University",
+      12966
+    ],
+    [
+      "Regional Technical Institute",
+      12957
+    ]
+  ]
+}
