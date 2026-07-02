@@ -1,0 +1,84 @@
+# Redrob Hackathon — Submission Metadata
+# Replace every <FILL ...> before submitting via the portal.
+
+team_name: "<FILL team name>"
+
+primary_contact:
+  name: "<FILL full name>"
+  email: "ishan.a@magureinc.com"
+  phone: "<FILL +91-XXXXXXXXXX>"
+
+team_members:
+  - name: "<FILL>"
+    email: "ishan.a@magureinc.com"
+    role: "ML Engineer"
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "<FILL https://github.com/USER/REPO>"
+sandbox_link: "<FILL e.g. https://huggingface.co/spaces/USER/redrob-ranker>"  # app.py provided; see README
+
+# Precomputed E5 embeddings (cand_emb.npy + cand_ids.json), ~286 MB zip on Google Drive.
+# Share as "Anyone with the link". download_embeddings.py fetches + unzips it into artifacts/.
+embeddings_url: "<FILL https://drive.google.com/file/d/FILE_ID/view?usp=sharing>"
+
+# One-time setup, then the single judged command:
+setup_command: "pip install -r requirements.txt && python download_embeddings.py"
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Windows 11, 16-core CPU (offline precompute also used an RTX 4060 GPU)"
+  cpu_cores: 16
+  ram_gb: 16
+  python_version: "3.11.15"
+  os: "Windows 11"
+  uses_gpu_for_inference: false          # ranking step is CPU-only
+  has_network_during_ranking: false      # no API calls during ranking
+  pre_computation_required: true         # E5 embeddings + Opus teacher labels + reranker (offline)
+  pre_computation_time_minutes: 30       # ~25 min GPU to embed 100K; teacher labeling separate, offline
+
+# ============================================================================
+# AI tools declaration (honest)
+# ============================================================================
+ai_tools_used:
+  - "Claude"          # Claude Opus 4.8 as an OFFLINE teacher labeler; Claude Code for development
+ai_usage_summary: |
+  Claude Opus 4.8 was used OFFLINE, during development only, as a "teacher": it scored ~400
+  candidates from the retrieval pool (relevance tier + fit + rationale) to manufacture the
+  silver labels the dataset does not provide. Those candidate profiles WERE sent to the
+  Anthropic API offline to generate labels; the labels were then distilled into a small local
+  reranker (scikit-learn Ridge over frozen E5 features). NO LLM and NO network is used during
+  ranking — rank.py runs CPU-only, offline, in ~40s. Claude Code was used for engineering,
+  architecture, and code review throughout.
+
+# ============================================================================
+# Approach summary (<=200 words)
+# ============================================================================
+methodology_summary: |
+  We treat single-JD ranking as a teacher->student problem. Offline, E5-base-v2 embeds all
+  100K profiles and we retrieve a ~1,500 contender pool against the JD. Claude Opus 4.8 acts as
+  a premium-recruiter teacher, scoring ~400 pooled candidates (tier + fit + rationale) -
+  manufacturing the labels the dataset lacks. We found raw cosine is near-useless at the very
+  top (Spearman 0.08 within the top-20), so the teacher's judgment is essential. We distill it
+  into a frozen-E5 learned reranker (Ridge) over content features + cosine + teacher-supervised
+  embedding prototypes (positive / hard-negative centroids), reaching Spearman ~0.71 vs the
+  teacher; RUM hard-negative mining sharpens confusable look-alikes. At rank time (CPU, <40s, no
+  network): the reranker scores all 100K, a deterministic honeypot gate excludes logically
+  impossible profiles (yoe > career-span, overlapping tenures, expert-zero skills), hard-cap
+  vetoes catch keyword-stuffers / services-only / wrong-domain, and a behavioral multiplier
+  down-weights inactive or unresponsive candidates. Reasoning is templated from real fields with
+  honest concerns. 0 honeypots in the top-100; the official format validator passes.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true          # explicit deterministic honeypot gate; 0 in top-100
+  reproduction_tested: true          # rank.py validated end-to-end on the 100K (~39s, CPU)

@@ -4,6 +4,10 @@ numpy==2.4.6
 scipy==1.17.1
 scikit-learn==1.9.0
 
+# One-time SETUP only: download_embeddings.py fetches the precomputed cand_emb.npy zip from the
+# shared Google Drive link. NOT used during ranking (rank.py makes no network calls).
+gdown==5.2.0
+
 # Needed only to (a) regenerate embeddings via phase1_embed.py, or (b) rank a swapped/sample
 # set whose ids are not in the precomputed cache (e.g. the sandbox). CPU build:
 #   pip install torch==2.12.1 --index-url https://download.pytorch.org/whl/cpu

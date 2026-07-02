@@ -29,7 +29,14 @@ CAND = (r"E:\[PUB] India_runs_data_and_ai_challenge\[PUB] India_runs_data_and_ai
 N_EASY = 400
 random.seed(42)
 
-labels = [json.loads(l) for l in open(os.path.join(ART, "teacher_labels.jsonl"), encoding="utf-8") if l.strip()]
+LBL = os.path.join(ART, "teacher_labels.jsonl")
+if not os.path.exists(LBL):
+    sys.exit(
+        "No teacher_labels.jsonl found. The teacher step is OPTIONAL — create the labels with EITHER:\n"
+        "  python phase2_teacher.py --limit 400 --model claude-opus-4-8   (LLM teacher; needs ANTHROPIC key)\n"
+        "  python phase2_fallback.py                                       (deterministic heuristic; no key)"
+    )
+labels = [json.loads(l) for l in open(LBL, encoding="utf-8") if l.strip()]
 by_id = {x["candidate_id"]: x for x in labels}
 pool = json.load(open(os.path.join(ART, "retrieval_topk.json"), encoding="utf-8"))
 pool_ids = {p["id"] for p in pool}

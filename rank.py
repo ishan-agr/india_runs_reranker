@@ -28,7 +28,7 @@ import jd_spec
 from behavioral import behavioral_modifier
 from serialize import to_passage_text
 
-ART = os.path.join(HERE, "artifacts")
+ART = os.environ.get("REDROB_ART", os.path.join(HERE, "artifacts"))
 
 
 def make_reason(c):
@@ -152,6 +152,19 @@ def main():
     present = rows >= 0
     emb[present] = cand_emb[rows[present]]
     if missing_idx:
+        # Guard: live-embedding thousands of rows on CPU (~18 texts/s) would blow the 5-min
+        # limit. If the precomputed cache is absent for a large set, the user forgot the
+        # one-time download step. Fail loudly with the fix (unless explicitly overridden).
+        if len(missing_idx) > 2000 and os.environ.get("RANK_ALLOW_LIVE_BULK") != "1":
+            sys.exit(
+                f"\n{len(missing_idx)} of {N} candidates have NO precomputed embedding.\n"
+                "Live-embedding this many on CPU would exceed the 5-min ranking limit.\n"
+                "Fetch the precomputed embeddings first (one-time, not part of ranking):\n"
+                "    python download_embeddings.py\n"
+                "This unzips cand_emb.npy + cand_ids.json into artifacts/. Then re-run rank.py.\n"
+                "(The sandbox uses small samples and is unaffected. To force bulk live-embedding\n"
+                " anyway, set RANK_ALLOW_LIVE_BULK=1.)"
+            )
         from sentence_transformers import SentenceTransformer
         st = SentenceTransformer("intfloat/e5-base-v2")
         me = st.encode(missing_text, normalize_embeddings=True, convert_to_numpy=True, batch_size=64)

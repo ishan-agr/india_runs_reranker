@@ -4,8 +4,16 @@
 *.env
 .env
 
-# Large precomputed artifacts (shipped separately / via LFS at Phase 8)
+# Large precomputed artifacts (hosted on Google Drive; fetched by download_embeddings.py)
 artifacts/*.npy
+artifacts/*.zip
+
+# Local timing/scratch + dev/backup artifacts (never part of the submission)
+sample*.jsonl
+out_*.csv
+artifacts_live/
+artifacts/*_opus.*
+artifacts/*_200.*
 
 # Python
 __pycache__/
