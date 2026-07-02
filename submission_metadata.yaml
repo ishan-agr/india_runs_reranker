@@ -1,22 +1,22 @@
 # Redrob Hackathon — Submission Metadata
 # Replace every <FILL ...> before submitting via the portal.
 
-team_name: "<FILL team name>"
+team_name: "Ishan Agrawal"
 
 primary_contact:
-  name: "<FILL full name>"
-  email: "ishan.a@magureinc.com"
-  phone: "<FILL +91-XXXXXXXXXX>"
+  name: "Ishan Agrawal"
+  email: "ishan.agrawal1008@gmail.com"
+  phone: "9243114013"
 
 team_members:
-  - name: "<FILL>"
-    email: "ishan.a@magureinc.com"
-    role: "ML Engineer"
+  - name: "NA"
+    email: "NA"
+    role: "NA"
 
 # ============================================================================
 # Code and reproducibility
 # ============================================================================
-github_repo: "<FILL https://github.com/USER/REPO>"
+github_repo: "https://github.com/ishan-agr/india_runs_reranker"
 sandbox_link: "<FILL e.g. https://huggingface.co/spaces/USER/redrob-ranker>"  # app.py provided; see README
 
 # Precomputed E5 embeddings (cand_emb.npy + cand_ids.json), ~286 MB zip on Google Drive.
@@ -49,11 +49,10 @@ ai_tools_used:
 ai_usage_summary: |
   Claude Opus 4.8 was used OFFLINE, during development only, as a "teacher": it scored ~400
   candidates from the retrieval pool (relevance tier + fit + rationale) to manufacture the
-  silver labels the dataset does not provide. Those candidate profiles WERE sent to the
-  Anthropic API offline to generate labels; the labels were then distilled into a small local
-  reranker (scikit-learn Ridge over frozen E5 features). NO LLM and NO network is used during
-  ranking — rank.py runs CPU-only, offline, in ~40s. Claude Code was used for engineering,
-  architecture, and code review throughout.
+  silver labels the dataset does not provide. NO LLM and NO network is used during
+  ranking — rank.py runs CPU-only, offline, in ~40s. 
+  
+  I have used Claude Code was used for research, engineering and code review throughout.
 
 # ============================================================================
 # Approach summary (<=200 words)
