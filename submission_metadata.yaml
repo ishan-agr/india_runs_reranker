@@ -21,7 +21,7 @@ sandbox_link: "<FILL e.g. https://huggingface.co/spaces/USER/redrob-ranker>"  # 
 
 # Precomputed E5 embeddings (cand_emb.npy + cand_ids.json), ~286 MB zip on Google Drive.
 # Share as "Anyone with the link". download_embeddings.py fetches + unzips it into artifacts/.
-embeddings_url: "<FILL https://drive.google.com/file/d/FILE_ID/view?usp=sharing>"
+embeddings_url: "https://drive.google.com/file/d/14cxg_ezmnPdwuOBtrr9yyvoLwFWTpR7J/view?usp=sharing"
 
 # One-time setup, then the single judged command:
 setup_command: "pip install -r requirements.txt && python download_embeddings.py"

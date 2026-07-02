@@ -1,9 +1,12 @@
 """
 download_embeddings.py — fetch the precomputed E5 embeddings and place them in artifacts/.
 
-ONE-TIME setup step, run BEFORE ranking the released 100K. It downloads a zip from the shared
-Google Drive link and unzips `cand_emb.npy` + `cand_ids.json` into ./artifacts/. After this,
+ONE-TIME setup step, run BEFORE ranking the released 100K. It downloads the file at the shared
+Google Drive link and puts `cand_emb.npy` (100K x 768, ~300 MB) into ./artifacts/. After this,
 `rank.py` runs CPU-only with NO network (this download is NOT part of the ranking step).
+
+`cand_ids.json` already ships inside the repo, so the Drive file only has to contain the .npy.
+The link may point to a raw `cand_emb.npy` OR a `.zip` that contains it — both are handled.
 
     python download_embeddings.py                    # uses EMBEDDINGS_URL below / env var
     python download_embeddings.py --url "<drive link>"
@@ -11,8 +14,8 @@ Google Drive link and unzips `cand_emb.npy` + `cand_ids.json` into ./artifacts/.
 
 The sandbox does NOT need this — it live-embeds each uploaded sample on the fly.
 
-If you'd rather do it by hand: download the zip from the Drive link, unzip it, and place
-`cand_emb.npy` and `cand_ids.json` directly inside the `artifacts/` folder next to reranker.pkl.
+By hand instead: download the file from the Drive link, and (unzip if needed) place
+`cand_emb.npy` directly inside the `artifacts/` folder next to `reranker.pkl`.
 """
 import argparse
 import os
@@ -23,74 +26,74 @@ import zipfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ART = os.path.join(HERE, "artifacts")
 
-# Google Drive share link (or bare file id) of the zip containing BOTH cand_emb.npy and
-# cand_ids.json. Fill this before submitting, or pass --url / set EMBEDDINGS_URL.
+# Google Drive share link (or bare file id) of cand_emb.npy (or a zip containing it).
 EMBEDDINGS_URL = os.environ.get(
     "EMBEDDINGS_URL",
-    "<FILL https://drive.google.com/file/d/FILE_ID/view?usp=sharing>",
+    "https://drive.google.com/file/d/14cxg_ezmnPdwuOBtrr9yyvoLwFWTpR7J/view?usp=sharing",
 )
 
-NEEDED = ("cand_emb.npy", "cand_ids.json")
+NPY = os.path.join(ART, "cand_emb.npy")
+IDS = os.path.join(ART, "cand_ids.json")
 
 
-def _flatten_into_art():
-    """If the zip nested the files in a subfolder, move them up into artifacts/."""
-    for name in NEEDED:
-        if os.path.exists(os.path.join(ART, name)):
+def _place_npy_from_zip(zip_path):
+    """Extract cand_emb.npy (and cand_ids.json if present) from a zip into artifacts/."""
+    with zipfile.ZipFile(zip_path) as z:
+        z.extractall(ART)
+    for name in ("cand_emb.npy", "cand_ids.json"):
+        dst = os.path.join(ART, name)
+        if os.path.exists(dst):
             continue
         for root, _dirs, files in os.walk(ART):
             if name in files:
-                src = os.path.join(root, name)
-                if os.path.abspath(src) != os.path.abspath(os.path.join(ART, name)):
-                    shutil.move(src, os.path.join(ART, name))
+                shutil.move(os.path.join(root, name), dst)
                 break
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--url", default=EMBEDDINGS_URL, help="Google Drive link or file id of the zip")
+    ap.add_argument("--url", default=EMBEDDINGS_URL, help="Google Drive link or file id")
+    ap.add_argument("--force", action="store_true", help="re-download even if cand_emb.npy exists")
     args = ap.parse_args()
 
     os.makedirs(ART, exist_ok=True)
-    if all(os.path.exists(os.path.join(ART, n)) for n in NEEDED):
-        print(f"Already present in {ART}: {', '.join(NEEDED)} - nothing to do.")
+    if os.path.exists(NPY) and not args.force:
+        print(f"Already present: {NPY} - nothing to do.")
         return
 
     url = args.url
     if not url or url.startswith("<FILL"):
-        sys.exit(
-            "No embeddings URL set. Provide the Google Drive link via --url, the EMBEDDINGS_URL "
-            "env var, or by editing EMBEDDINGS_URL in download_embeddings.py."
-        )
+        sys.exit("No embeddings URL set. Pass --url, set EMBEDDINGS_URL, or edit EMBEDDINGS_URL.")
 
     try:
         import gdown
     except ImportError:
         sys.exit("gdown is required for the download. Install it with:  pip install gdown")
 
-    zip_path = os.path.join(ART, "_cand_emb_bundle.zip")
-    print(f"Downloading embeddings bundle from Drive ...")
-    out = gdown.download(url=url, output=zip_path, quiet=False, fuzzy=True)
-    if not out or not os.path.exists(zip_path):
+    tmp = os.path.join(ART, "_download.part")
+    print("Downloading embeddings from Drive ...")
+    out = gdown.download(url=url, output=tmp, quiet=False, fuzzy=True)
+    if not out or not os.path.exists(tmp):
         sys.exit(
-            "gdown could not download the file. Check the link is public ('Anyone with the "
-            "link') and correct. You can also download + unzip it manually into artifacts/."
+            "gdown could not download the file. Check the link is shared 'Anyone with the link'. "
+            "You can also download it by hand and place cand_emb.npy in artifacts/."
         )
 
-    print("Unzipping into artifacts/ ...")
-    with zipfile.ZipFile(zip_path) as z:
-        z.extractall(ART)
-    os.remove(zip_path)
-    _flatten_into_art()
+    if zipfile.is_zipfile(tmp):
+        print("Downloaded a zip - extracting cand_emb.npy into artifacts/ ...")
+        _place_npy_from_zip(tmp)
+        os.remove(tmp)
+    else:
+        print("Placing cand_emb.npy into artifacts/ ...")
+        shutil.move(tmp, NPY)
 
-    missing = [n for n in NEEDED if not os.path.exists(os.path.join(ART, n))]
-    if missing:
-        sys.exit(
-            f"Unzip finished but these are still missing from artifacts/: {missing}. "
-            "The zip must contain cand_emb.npy and cand_ids.json."
-        )
-    size_mb = os.path.getsize(os.path.join(ART, "cand_emb.npy")) / 1e6
-    print(f"Ready: artifacts/cand_emb.npy ({size_mb:.0f} MB) + artifacts/cand_ids.json")
+    if not os.path.exists(NPY):
+        sys.exit("Download finished but artifacts/cand_emb.npy is still missing.")
+    size_mb = os.path.getsize(NPY) / 1e6
+    print(f"Ready: artifacts/cand_emb.npy ({size_mb:.0f} MB)")
+    if not os.path.exists(IDS):
+        print("WARNING: artifacts/cand_ids.json is missing — it normally ships in the repo and "
+              "rank.py needs it to map embedding rows to candidate_ids.")
     print("Now run:  python rank.py --candidates ./candidates.jsonl --out ./submission.csv")
 
 

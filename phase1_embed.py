@@ -7,8 +7,8 @@ intfloat/e5-base-v2 (normalized -> cosine == dot product), saves:
   artifacts/cand_ids.json  ordered list of candidate_id (row i <-> emb[i])
 
 Usage:
-  python phase1_embed.py            # full 100K
-  python phase1_embed.py 200        # smoke test on first 200 (also warms model cache)
+  python phase1_embed.py --candidates ./candidates.jsonl               # full set
+  python phase1_embed.py --candidates ./candidates.jsonl --limit 200   # smoke test on first 200
 """
 import sys
 import os
@@ -21,14 +21,23 @@ from sentence_transformers import SentenceTransformer
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from serialize import to_passage_text  # noqa: E402
 
-CANDIDATES = (r"E:\[PUB] India_runs_data_and_ai_challenge\[PUB] India_runs_data_and_ai_challenge"
-              r"\India_runs_data_and_ai_challenge\candidates.jsonl")
-OUTDIR = r"E:\[PUB] India_runs_data_and_ai_challenge\redrob_ranker\artifacts"
+import argparse
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ap = argparse.ArgumentParser(description="Embed candidates with E5-base-v2 -> artifacts/cand_emb.npy")
+ap.add_argument("--candidates", default="candidates.jsonl",
+                help="path to candidates.jsonl (default: ./candidates.jsonl)")
+ap.add_argument("--limit", type=int, default=None,
+                help="only embed the first N candidates (smoke test)")
+args = ap.parse_args()
+
+CANDIDATES = args.candidates
+OUTDIR = os.path.join(HERE, "artifacts")
 MODEL = "intfloat/e5-base-v2"
 BATCH = 64
 
 os.makedirs(OUTDIR, exist_ok=True)
-limit = int(sys.argv[1]) if len(sys.argv) > 1 else None
+limit = args.limit
 
 t_load = time.time()
 ids, texts = [], []
